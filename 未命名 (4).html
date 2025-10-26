@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界和平 - 区块链促进全球和谐</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            500: '#FFD700',
+                            600: '#D4AF37',
+                        },
+                        dark: {
+                            900: '#0A0A0A',
+                            800: '#121212',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow-gold {
+                text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(255, 215, 0, 0.2);
+            }
+            .news-item {
+                transition: transform 0.3s ease;
+            }
+            .news-item:hover {
+                transform: translateX(4px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-white font-sans">
+    <!-- 头部区域 -->
+    <header class="relative bg-cover bg-center h-80 md:h-96" style="background-image: url('https://picsum.photos/id/1048/1920/1080'); background-position: center 30%;">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="container mx-auto px-4 relative z-10 flex flex-col1 items-center items-center justify-center h-full">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-gold-500 text-shadow-gold">世界和平</h1>
+                <p class="text-lg md:text-xl text-white/80 max-w-2xl text-center mt-4 mx-auto">
+                    以区块链技术为桥梁，构建全球和谐共识网络
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 简介区域 -->
+    <section class="container mx-auto px-4 py-12 max-w-4xl">
+        <div class="bg-dark-800 rounded-2xl p-8 card-hover">
+            <p class="text-lg leading-relaxed text-white/80">
+                世界和平的叙事聚焦于通过区块链技术链技术促进全球和谐与团结。受到对和平的普遍渴望的启发，该 token 体现了希望与新生的愿景，其象征是一只鸽子飞向日出。作为 BSC 链上的创新项目，其象征性信息在加密社区中引起广泛共鸣，旨在促进跨文化团结，符合更广泛的社会和谐理念。
+            </p>
+            
+            <div class="mt-6 pt-6 border-t border-gold-500/10">
+                <a href="https://x.com/i/communities/1981067870722543731" target="_blank" class="inline-flex items-center items-center text-gold-500 hover:text-gold-600 transition-colors">
+                    <i class="fa fa-twitter mr-2"></i>
+                    <span>关注我们的X社区，获取最新动态</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 链接区域 -->
+    <section class="container mx-auto px-4 py-6 max-w-5xl">
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+            <a href="https://bscscan.com/address/0x4444def5cf226bf50aa4b45e5748b676945bc509" target="_blank" class="bg-gold-500 hover:bg-gold-600 text-dark-900 font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center shadow-md hover:shadow-lg">
+                <i class="fa fa-link mr-2"></i> 
+                <span class="hidden sm:inline">CA:</span> 0x4444def5cf226bf50aa4b45e5748b676945bc509
+            </a>
+            <a href="https://t.me/WorldPeace_BNB" target="_blank" class="bg-dark-800 hover:bg-gold-600/10 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center shadow-md hover:shadow-lg border border-gold-500/30">
+                <i class="fa fa-comments mr-2"></i> 加入Telegram社区
+            </a>
+        </div>
+    </section>
+
+    <!-- 内容板块 -->
+    <section class="container mx-auto px-4 py-10 max-w-6xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- 左侧：和平口号生成 -->
+            <div class="bg-dark-800 rounded-2xl p-8 card-hover border border-gold-500/20">
+                <h2 class="text-2xl font-bold text-gold-500 mb-6 text-center flex items-center justify-center">
+                    <i class="fa fa-heart-o mr-2 text-gold-500"></i>和平祝福口号
+                </h2>
+                <div id="slogan" class="min-h-[140px] bg-dark-900 rounded-xl p-6 text-center text-lg md:text-xl mb-6 flex items-center justify-center transition-all duration-300">
+                    点击下方按钮生成和平祝福
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="generateSlogan()" class="bg-gold-500 hover:bg-gold-600 text-dark-900 font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center shadow-md hover:shadow-lg">
+                        <i class="fa fa-refresh mr-2"></i> 刷新生成
+                    </button>
+                    <button id="copyBtn" onclick="copySlogan()" class="bg-dark-900 hover:bg-gold-600/10 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center shadow-md hover:shadow-lg border border-gold-500/30">
+                        <i class="fa fa-copy mr-2"></i> 复制口号
+                    </button>
+                </div>
+            </div>
+
+            <!-- 右侧：和平相关最新资讯 -->
+            <div class="bg-dark-800 rounded-2xl p-8 card-hover border border-gold-500/20">
+                <h2 class="text-2xl font-bold text-gold-500 mb-6 text-center flex items-center justify-center">
+                    <i class="fa fa-newspaper-o mr-2 text-gold-500"></i>和平相关最新资讯
+                </h2>
+                <p id="newsUpdateTime" class="text-xs text-white/40 text-center mb-4">最后更新：加载中...</p>
+                <div class="space-y-5" id="news-container">
+                    <div class="text-center text-white/60 py-8">
+                        <i class="fa fa-spinner fa-spin text-gold-500 text-2xl mb-2"></i>
+                        <p>正在加载最新资讯...</p>
+                    </div>
+                </div>
+                <button onclick="loadPeaceNews()" class="mt-6 text-gold-500 hover:text-gold-600 font-medium transition-colors flex items-center mx-auto">
+                    <i class="fa fa-refresh mr-1"></i>
+                    <span>手动刷新</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 慈善机构捐赠地址 -->
+    <section class="container mx-auto px-4 py-12 max-w-6xl">
+        <div class="bg-dark-800 rounded-2xl p-8 card-hover border border-gold-500/20">
+            <h2 class="text-2xl font-bold text-gold-500 mb-8 text-center">
+                <i class="fa fa-hands-helping mr-2 text-gold-500"></i>支持和平与慈善事业
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 联合国儿童基金会 -->
+                <div class="border border-gold-500/10 rounded-xl p-6 card-hover hover:shadow-lg bg-dark-900/50">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gold-500/20 flex items-center justify-center mr-4">
+                            <i class="fa fa-child text-gold-500 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gold-500">联合国儿童基金会</h3>
+                    </div>
+                    <p class="text-sm text-white/60 mb-4">致力于保护儿童权利，为冲突地区儿童提供援助</p>
+                    <a href="https://www.unicef.org/donate" target="_blank" class="inline-block text-gold-500 hover:text-gold-600 text-sm font-medium transition-colors">
+                        立即捐赠 <i class="fa fa-external-link ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- 红十字会 -->
+                <div class="border border-gold-500/10 rounded-xl p-6 card-hover hover:shadow-lg bg-dark-900/50">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gold-500/20 flex items-center justify-center mr-4">
+                            <i class="fa fa-heartbeat text-gold-500 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gold-500">红十字国际委员会</h3>
+                    </div>
+                    <p class="text-sm text-white/60 mb-4">为战争和武装冲突受害者提供保护和援助</p>
+                    <a href="https://www.icrc.org/zh/donate" target="_blank" class="inline-block text-gold-500 hover:text-gold-600 text-sm font-medium transition-colors">
+                        立即捐赠 <i class="fa fa-external-link ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- 世界自然基金会 -->
+                <div class="border border-gold-500/10 rounded-xl p-6 card-hover hover:shadow-lg bg-dark-900/50">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gold-500/20 flex items-center justify-center mr-4">
+                            <i class="fa fa-leaf text-gold-500 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gold-500">世界自然基金会</h3>
+                    </div>
+                    <p class="text-sm text-white/60 mb-4">致力于保护生物多样性，推动可持续发展，构建人与自然和谐共生的和平环境</p>
+                    <a href="https://www.worldwildlife.org/donate" target="_blank" class="inline-block text-gold-500 hover:text-gold-600 text-sm font-medium transition-colors">
+                        立即捐赠 <i class="fa fa-external-link ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark-900 text-white/40 py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-4 flex justify-center space-x-4">
+                <a href="https://x.com/i/communities/1981067870722543731" target="_blank" class="inline-block w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center hover:bg-gold-500/20 transition-colors">
+                    <i class="fa fa-twitter text-gold-500"></i>
+                </a>
+                <a href="https://t.me/WorldPeace_BNB" target="_blank" class="inline-block w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center hover:bg-gold-500/20 transition-colors">
+                    <i class="fa fa-telegram text-gold-500"></i>
+                </a>
+                <a href="#" class="inline-block w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center hover:bg-gold-500/20 transition-colors">
+                    <i class="fa fa-discord text-gold-500"></i>
+                </a>
+            </div>
+            <p class="text-xs">作者：徐风烈</p>
+            <p class="text-xs mt-2">© 2023 世界和平倡议 | 基于 BSC 链构建和平共识网络</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. 完整的50条和平口号库
+        const slogans = [
+            "链上共识铸和平，全球团结创未来，让区块链成为和平的永恒见证 #世界和平 $世界和平",
+            "硝烟尽散于链上，友爱凝聚于共识，和平的代码由你我共同编写 #世界和平 $世界和平",
+            "以区块链为舟，渡向和平彼岸，让每个区块都镌刻团结的誓言 #世界和平 $世界和平",
+            "技术向善，和平向光，币安生态赋能全球和谐新范式 #世界和平 $世界和平",
+            "跨越边界的共识，超越分歧的团结，和平的力量在链上生生不息 #世界和平 $世界和平",
+            "当枪声化为链上交易，当冲突转为社区共识，这便是我们的和平使命 #世界和平 $世界和平",
+            "币安链上的每一次确认，都是和平的一次心跳，让我们共筑和谐未来 #世界和平 $世界和平",
+            "从链上到线下，从理念到行动，和平的 revolution 从共识开始 #世界和平 $世界和平",
+            "摒弃纷争，拥抱链上共识；跨越分歧，共建全球和平 #世界和平 $世界和平",
+            "和平不是终点，而是链上永不停歇的共识进程 #世界和平 $世界和平",
+            "每笔交易都是和平的种子，每个区块都是希望的土壤 #世界和平 $世界和平",
+            "区块链织就和平网络，共识凝聚人类命运共同体 #世界和平 $世界和平",
+            "代码无国界，和平无隔阂，让技术成为跨越分歧的桥梁 #世界和平 $世界和平",
+            "链上存证和平承诺，区块记录友爱瞬间，我们的未来值得期待 #世界和平 $世界和平",
+            "共识算法化解分歧，智能合约保障承诺，和平从未如此可信赖 #世界和平 $世界和平",
+            "在去中心化的世界里，每个人都是和平的节点与守护者 #世界和平 $世界和平",
+            "哈希值串联起的和平愿景，将在全球节点间无限传递 #世界和平 $世界和平",
+            "当世界连成一条链，和平便是最长的区块 #世界和平 $世界和平",
+            "用加密技术守护善意，用分布式网络传递和平 #世界和平 $世界和平",
+            "每个钱包都藏着和平的潜力，每笔转账都能播种希望 #世界和平 $世界和平",
+            "区块链上的和平宣言，将被所有节点永久铭记 #世界和平 $世界和平",
+            "共识机制构建信任基石，和平理念点亮人类前程 #世界和平 $世界和平",
+            "从创世区块到未来纪元，和平是我们共同的链上约定 #世界和平 $世界和平",
+            "去中心化的爱，分布式的善，和平因此无坚不摧 #世界和平 $世界和平",
+            "链上每一次确认，都是人类向和平迈进的一步 #世界和平 $世界和平",
+            "让战争在链下终结，让友爱在链上永生 #世界和平 $世界和平",
+            "区块链见证的和平，将比任何条约都更持久 #世界和平 $世界和平",
+            "共识凝聚力量，技术守护和平，我们的使命正在链上实现 #世界和平 $世界和平",
+            "跨越时区的链上握手，超越种族的共识相拥 #世界和平 $世界和平",
+            "当和平成为全网共识，人类将迎来真正的区块新纪元 #世界和平 $世界和平",
+            "每个节点都是和平使者，每笔交易都是善意传递 #世界和平 $世界和平",
+            "用区块链的不可篡改性，保障和平的不可动摇性 #世界和平 $世界和平",
+            "分布式和平网络，正在全球节点间悄然形成 #世界和平 $世界和平",
+            "哈希碰撞出和平火花，区块堆叠起友爱长城 #世界和平 $世界和平",
+            "在加密的世界里，和平是唯一无需解密的共识 #世界和平 $世界和平",
+            "链上和平协议，将由全人类共同签名确认 #世界和平 $世界和平",
+            "从币安链到全世界，和平的代码正在编译运行 #世界和平 $世界和平",
+            "共识即和平，信任即未来，这是区块链教会我们的真理 #世界和平 $世界和平",
+            "让每个区块都承载和平梦想，让每条链都连接友爱力量 #世界和平 $世界和平",
+            "区块链上的和平方程式，解是全人类的共同幸福 #世界和平 $世界和平",
+            "当和平成为链上默认值，人类文明将升级到2.0版本 #世界和平 $世界和平",
+            "节点互联成和平网络，共识共享为美好未来 #世界和平 $世界和平",
+            "用区块链的透明性，见证和平进程的每一步 #世界和平 $世界和平",
+            "链上存证的和平承诺，将成为子孙后代的历史见证 #世界和平 $世界和平",
+            "共识算法消除误解，分布式网络传递真情 #世界和平 $世界和平",
+            "在区块链的时空中，和平是永不分叉的主链 #世界和平 $世界和平",
+            "每个地址都能接收和平，每笔交易都能发送友爱 #世界和平 $世界和平",
+            "区块链构建的和平基石，将支撑人类文明新高度 #世界和平 $世界和平",
+            "从共识机制到和平机制，技术正在重塑人类命运 #世界和平 $世界和平",
+            "链上和平，链下和谐，这是我们对世界的共同承诺 #世界和平 $世界和平"
+        ];
+
+        // 2. 新闻加载功能（使用你的GNews API密钥）
+        const API_KEY = "e3eefb0a95a16993507953866944685d";
+        const NEWS_API_URL = `https://gnews.io/api/v4/search?q=和平+冲突+人道主义&lang=zh&country=cn&max=5&apikey=${API_KEY}`;
+
+        // 生成随机口号
+        function generateSlogan() {
+            const sloganElement = document.getElementById('slogan');
+            // 添加动画效果
+            sloganElement.style.opacity = "0";
+            sloganElement.style.transform = "scale(0.95)";
+            
+            setTimeout(() => {
+                // 随机选择一条口号
+                const randomIndex = Math.floor(Math.random() * slogans.length);
+                sloganElement.textContent = slogans[randomIndex];
+                // 恢复显示
+                sloganElement.style.opacity = "1";
+                sloganElement.style.transform = "scale(1)";
+            }, 200);
+        }
+
+        // 复制口号功能
+        function copySlogan() {
+            const sloganElement = document.getElementById('slogan');
+            const sloganText = sloganElement.textContent;
+            const copyBtn = document.getElementById('copyBtn');
+            
+            if (sloganText === "点击下方按钮生成和平祝福") {
+                alert('请先生成和平口号再进行复制');
+                return;
+            }
+            
+            // 复制到剪贴板
+            navigator.clipboard.writeText(sloganText).then(() => {
+                // 成功反馈
+                const originalHTML = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fa fa-check mr-2"></i> 已复制';
+                copyBtn.classList.add('bg-gold-500', 'text-dark-900');
+                copyBtn.classList.remove('bg-dark-900', 'hover:bg-gold-600/10', 'border');
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHTML;
+                    copyBtn.classList.remove('bg-gold-500', 'text-dark-900');
+                    copyBtn.classList.add('bg-dark-900', 'hover:bg-gold-600/10', 'border', 'border-gold-500/30');
+                }, 2000);
+            }).catch(err => {
+                console.error('复制失败:', err);
+                alert('复制失败，请手动复制');
+            });
+        }
+
+        // 加载和平相关新闻
+        function loadPeaceNews() {
+            const newsContainer = document.getElementById('news-container');
+            const updateTimeEl = document.getElementById('newsUpdateTime');
+            
+            // 显示加载状态
+            newsContainer.innerHTML = `
+                <div class="text-center text-white/60 py-8">
+                    <i class="fa fa-spinner fa-spin text-gold-500 text-2xl mb-2"></i>
+                    <p>正在加载最新资讯...</p>
+                </div>
+            `;
+
+            // 调用GNews API
+            fetch(NEWS_API_URL)
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 429) {
+                            throw new Error("API调用次数超限，请明天再试");
+                        } else if (response.status === 401) {
+                            throw new Error("API密钥无效，请检查密钥");
+                        } else {
+                            throw new Error(`请求失败: ${response.status}`);
+                        }
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.articles && data.articles.length > 0) {
+                        newsContainer.innerHTML = '';
+                        data.articles.forEach(article => {
+                            const newsItem = document.createElement('div');
+                            newsItem.className = 'border-l-4 border-gold-500 pl-4 py-3 mb-3 news-item card-hover';
+                            newsItem.innerHTML = `
+                                <a href="${article.url}" target="_blank" class="text-white hover:text-gold-500 transition-colors block">
+                                    <h3 class="font-medium">${article.title}</h3>
+                                    <p class="text-xs text-white/40 mt-1">
+                                        ${article.source.name || '未知来源'} · ${new Date(article.publishedAt).toLocaleString()}
+                                    </p>
+                                </a>
+                            `;
+                            newsContainer.appendChild(newsItem);
+                        });
+                        // 更新时间
+                        updateTimeEl.textContent = `最后更新：${new Date().toLocaleString()}`;
+                    } else {
+                        newsContainer.innerHTML = '<p class="text-center text-white/60 py-8">暂无相关资讯</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error("新闻加载失败：", error);
+                    newsContainer.innerHTML = `
+                        <p class="text-center text-red-400 py-8">
+                            资讯加载失败：${error.message}
+                        </p>
+                    `;
+                });
+        }
+
+        // 自动刷新设置（每24小时）
+        function setupAutoRefresh() {
+            // 页面加载时立即加载
+            loadPeaceNews();
+            // 定时刷新
+            setInterval(loadPeaceNews, 86400000); // 24小时 = 86400000毫秒
+        }
+
+        // 页面初始化
+        window.onload = function() {
+            setupAutoRefresh();
+            // 初始化口号区域样式
+            const sloganElement = document.getElementById('slogan');
+            sloganElement.style.opacity = "1";
+            sloganElement.style.transform = "scale(1)";
+        };
+    </script>
+</body>
+</html>
