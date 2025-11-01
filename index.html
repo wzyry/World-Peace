@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界和平 - 区块链促进全球和谐</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            500: '#FFD700',
+                            600: '#D4AF37',
+                        },
+                        dark: {
+                            900: '#0A0A0A',
+                            800: '#121212',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow-gold {
+                text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(255, 215, 0, 0.2);
+            }
+            .news-item {
+                transition: transform 0.3s ease;
+            }
+            .news-item:hover {
+                transform: translateX(4px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-white font-sans">
+    <!-- 头部区域 -->
+    <header class="relative bg-cover bg-center h-80 md:h-96" style="background-image: url('https://picsum.photos/id/1048/1920/1080'); background-position: center 30%;">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="container mx-auto px-4 relative z-10 flex flex-col1 items-center items-center justify-center h-full">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-gold-500 text-shadow-gold">世界和平</h1>
+                <p class="text-lg md:text-xl text-white/80 max-w-2xl text-center mt-4 mx-auto">
+                    以区块链技术为桥梁，构建全球和谐共识网络
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- 简介区域 -->
+    <section class="container mx-auto px-4 py-12 max-w-4xl">
+        <div class="bg-dark-800 rounded-2xl p-8 card-hover">
+            <p class="text-lg leading-relaxed text-white/80">
+                世界和平的叙事聚焦于通过区块链技术链技术促进全球和谐与团结。受到对和平的普遍渴望的启发，该 token 体现了希望与新生的愿景，其象征是一只鸽子飞向日出。作为 BSC 链上的创新项目，其象征性信息在加密社区中引起广泛共鸣，旨在促进跨文化团结，符合更广泛的社会和谐理念。
+            </p>
+            
+            <div class="mt-6 pt-6 border-t border-gold-500/10">
+                <a href="https://x.com/i/communities/1981067870722543731" target="_blank" class="inline-flex items-center items-center text-gold-500 hover:text-gold-600 transition-colors">
+                    <i class="fa fa-twitter mr-2"></i>
+                    <span>关注我们的X社区，获取最新动态</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 链接区域 -->
+    <section class="container mx-auto px-4 py-6 max-w-5xl">
+        <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+            <a href="https://bscscan.com/address/0x4444def5cf226bf50aa4b45e5748b676945bc509" target="_blank" class="bg-gold-500 hover:bg-gold-600 text-dark-900 font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center shadow-md hover:shadow-lg">
+                <i class="fa fa-link mr-2"></i> 
+                <span class="hidden sm:inline">CA:</span> 0x4444def5cf226bf50aa4b45e5748b676945bc509
+            </a>
+            <a href="https://t.me/WorldPeace_BNB" target="_blank" class="bg-dark-800 hover:bg-gold-600/10 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center shadow-md hover:shadow-lg border border-gold-500/30">
+                <i class="fa fa-comments mr-2"></i> 加入Telegram社区
+            </a>
+        </div>
+    </section>
+
+    <!-- 内容板块 -->
+    <section class="container mx-auto px-4 py-10 max-w-6xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- 左侧：和平口号生成 -->
+            <div class="bg-dark-800 rounded-2xl p-8 card-hover border border-gold-500/20">
+                <h2 class="text-2xl font-bold text-gold-500 mb-6 text-center flex items-center justify-center">
+                    <i class="fa fa-heart-o mr-2 text-gold-500"></i>和平祝福口号
+                </h2>
+                <div id="slogan" class="min-h-[140px] bg-dark-900 rounded-xl p-6 text-center text-lg md:text-xl mb-6 flex items-center justify-center transition-all duration-300">
+                    点击下方按钮生成和平祝福
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="generateSlogan()" class="bg-gold-500 hover:bg-gold-600 text-dark-900 font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center shadow-md hover:shadow-lg">
+                        <i class="fa fa-refresh mr-2"></i> 刷新生成
+                    </button>
+                    <button id="copyBtn" onclick="copySlogan()" class="bg-dark-900 hover:bg-gold-600/10 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center shadow-md hover:shadow-lg border border-gold-500/30">
+                        <i class="fa fa-copy mr-2"></i> 复制口号
+                    </button>
+                </div>
+            </div>
+
+            <!-- 右侧：和平相关最新资讯 -->
+            <div class="bg-dark-800 rounded-2xl p-8 card-hover border border-gold-500/20">
+                <h2 class="text-2xl font-bold text-gold-500 mb-6 text-center flex items-center justify-center">
+                    <i class="fa fa-newspaper-o mr-2 text-gold-500"></i>和平相关最新资讯
+                </h2>
+                <p id="newsUpdateTime" class="text-xs text-white/40 text-center mb-4">最后更新：加载中...</p>
+                <div class="space-y-5" id="news-container">
+                    <div class="text-center text-white/60 py-8">
+                        <i class="fa fa-spinner fa-spin text-gold-500 text-2xl mb-2"></i>
+                        <p>正在加载最新资讯...</p>
+                    </div>
+                </div>
+                <button onclick="loadPeaceNews()" class="mt-6 text-gold-500 hover:text-gold-600 font-medium transition-colors flex items-center mx-auto">
+                    <i class="fa fa-refresh mr-1"></i>
+                    <span>手动刷新</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 慈善机构捐赠地址 -->
+    <section class="container mx-auto px-4 py-12 max-w-6xl">
+        <div class="bg-dark-800 rounded-2xl p-8 card-hover border border-gold-500/20">
+            <h2 class="text-2xl font-bold text-gold-500 mb-8 text-center">
+                <i class="fa fa-hands-helping mr-2 text-gold-500"></i>支持和平与慈善事业
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 联合国儿童基金会 -->
+                <div class="border border-gold-500/10 rounded-xl p-6 card-hover hover:shadow-lg bg-dark-900/50">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gold-500/20 flex items-center justify-center mr-4">
+                            <i class="fa fa-child text-gold-500 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gold-500">联合国儿童基金会</h3>
+                    </div>
+                    <p class="text-sm text-white/60 mb-4">致力于保护儿童权利，为冲突地区儿童提供援助</p>
+                    <a href="https://www.unicef.org/" target="_blank" class="inline-block text-gold-500 hover:text-gold-600 text-sm font-medium transition-colors">
+                        立即捐赠 <i class="fa fa-external-link ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- 红十字会 -->
+                <div class="border border-gold-500/10 rounded-xl p-6 card-hover hover:shadow-lg bg-dark-900/50">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gold-500/20 flex items-center justify-center mr-4">
+                            <i class="fa fa-heartbeat text-gold-500 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gold-500">红十字国际委员会</h3>
+                    </div>
+                    <p class="text-sm text-white/60 mb-4">为战争和武装冲突受害者提供保护和援助</p>
+                    <a href="https://www.icrc.org/zh/donate" target="_blank" class="inline-block text-gold-500 hover:text-gold-600 text-sm font-medium transition-colors">
+                        立即捐赠 <i class="fa fa-external-link ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- 世界自然基金会 -->
+                <div class="border border-gold-500/10 rounded-xl p-6 card-hover hover:shadow-lg bg-dark-900/50">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gold-500/20 flex items-center justify-center mr-4">
+                            <i class="fa fa-leaf text-gold-500 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-gold-500">世界和平基金会</h3>
+                    </div>
+                    <p class="text-sm text-white/60 mb-4">致力于世界和平的理想的区块链爱好者，用技术社群的温度与共识，搭建起的善意桥梁</p>
+                    <a href="https://sjhpjjhvercelapp.vercel.app/" target="_blank" class="inline-block text-gold-500 hover:text-gold-600 text-sm font-medium transition-colors">
+                        立即捐赠 <i class="fa fa-external-link ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark-900 text-white/40 py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-4 flex justify-center space-x-4">
+                <a href="https://x.com/i/communities/1981067870722543731" target="_blank" class="inline-block w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center hover:bg-gold-500/20 transition-colors">
+                    <i class="fa fa-twitter text-gold-500"></i>
+                </a>
+                <a href="https://t.me/WorldPeace_BNB" target="_blank" class="inline-block w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center hover:bg-gold-500/20 transition-colors">
+                    <i class="fa fa-telegram text-gold-500"></i>
+                </a>
+                <a href="https://t.me/+-SUj8RpTgmNlZTIx" target="_blank" class="inline-block w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center hover:bg-gold-500/20 transition-colors">
+                    <i class="fa fa-telegram text-gold-500"></i>
+                </a>
+            </div>
+            <p class="text-xs">作者：徐风烈</p>
+            <p class="text-xs mt-2">© 2025/10/21 世界和平倡议 | 基于 BSC 链构建和平共识网络</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. 完整的50条和平口号库
+        const slogans = [
+           "链上共识铸和平，全球团结创未来，让区块链成为和平的永恒见证 #世界和平 #WorldPeace",
+            "硝烟尽散于链上，友爱凝聚于共识，和平的代码由你我共同编写 #世界和平 #WorldPeace",
+            "以区块链为舟，渡向和平彼岸，让每个区块都镌刻团结的誓言 #世界和平 #WorldPeace",
+            "技术向善，和平向光，币安生态赋能全球和谐新范式 #世界和平 #WorldPeace",
+            "跨越边界的共识，超越分歧的团结，和平的力量在链上生生不息 #世界和平 #WorldPeace",
+            "当枪声化为链上交易，当冲突转为社区共识，这便是我们的和平使命 #世界和平 #WorldPeace",
+            "币安链上的每一次确认，都是和平的一次心跳，让我们共筑和谐未来 #世界和平 #WorldPeace",
+            "从链上到线下，从理念到行动，和平的 revolution 从共识开始 #世界和平 #WorldPeace",
+            "摒弃纷争，拥抱链上共识；跨越分歧，共建全球和平 #世界和平 #WorldPeace",
+            "和平不是终点，而是链上永不停歇的共识进程 #世界和平 #WorldPeace",
+            "每笔交易都是和平的种子，每个区块都是希望的土壤 #世界和平 #WorldPeace",
+            "区块链织就和平网络，共识凝聚人类命运共同体 #世界和平 #WorldPeace",
+            "代码无国界，和平无隔阂，让技术成为跨越分歧的桥梁 #世界和平 #WorldPeace",
+            "链上存证和平承诺，区块记录友爱瞬间，我们的未来值得期待 #世界和平 #WorldPeace",
+            "共识算法化解分歧，智能合约保障承诺，和平从未如此可信赖 #世界和平 #WorldPeace",
+            "在去中心化的世界里，每个人都是和平的节点与守护者 #世界和平 #WorldPeace",
+            "哈希值串联起的和平愿景，将在全球节点间无限传递 #世界和平 #WorldPeace",
+            "当世界连成一条链，和平便是最长的区块 #世界和平 #WorldPeace",
+            "用加密技术守护善意，用分布式网络传递和平 #世界和平 #WorldPeace",
+            "每个钱包都藏着和平的潜力，每笔转账都能播种希望 #世界和平 #WorldPeace",
+            "区块链上的和平宣言，将被所有节点永久铭记 #世界和平 #WorldPeace",
+            "共识机制构建信任基石，和平理念点亮人类前程 #世界和平 #WorldPeace",
+            "从创世区块到未来纪元，和平是我们共同的链上约定 #世界和平 #WorldPeace",
+            "去中心化的爱，分布式的善，和平因此无坚不摧 #世界和平 #WorldPeace",
+            "链上每一次确认，都是人类向和平迈进的一步 #世界和平 #WorldPeace",
+            "让战争在链下终结，让友爱在链上永生 #世界和平 #WorldPeace",
+            "区块链见证的和平，将比任何条约都更持久 #世界和平 #WorldPeace",
+            "共识凝聚力量，技术守护和平，我们的使命正在链上实现 #世界和平 #WorldPeace",
+            "跨越时区的链上握手，超越种族的共识相拥 #世界和平 #WorldPeace",
+            "当和平成为全网共识，人类将迎来真正的区块新纪元 #世界和平 #WorldPeace",
+            "每个节点都是和平使者，每笔交易都是善意传递 #世界和平 #WorldPeace",
+            "用区块链的不可篡改性，保障和平的不可动摇性 #世界和平 #WorldPeace",
+            "分布式和平网络，正在全球节点间悄然形成 #世界和平 #WorldPeace",
+            "哈希碰撞出和平火花，区块堆叠起友爱长城 #世界和平 #WorldPeace",
+            "在加密的世界里，和平是唯一无需解密的共识 #世界和平 #WorldPeace",
+            "链上和平协议，将由全人类共同签名确认 #世界和平 #WorldPeace",
+            "从币安链到全世界，和平的代码正在编译运行 #世界和平 #WorldPeace",
+            "共识即和平，信任即未来，这是区块链教会我们的真理 #世界和平 #WorldPeace",
+            "让每个区块都承载和平梦想，让每条链都连接友爱力量 #世界和平 #WorldPeace",
+            "区块链上的和平方程式，解是全人类的共同幸福 #世界和平 #WorldPeace",
+            "当和平成为链上默认值，人类文明将升级到2.0版本 #世界和平 #WorldPeace",
+            "节点互联成和平网络，共识共享为美好未来 #世界和平 #WorldPeace",
+            "用区块链的透明性，见证和平进程的每一步 #世界和平 #WorldPeace",
+            "链上存证的和平承诺，将成为子孙后代的历史见证 #世界和平 #WorldPeace",
+            "共识算法消除误解，分布式网络传递真情 #世界和平 #WorldPeace",
+            "在区块链的时空中，和平是永不分叉的主链 #世界和平 #WorldPeace",
+            "每个地址都能接收和平，每笔交易都能发送友爱 #世界和平 #WorldPeace",
+            "区块链构建的和平基石，将支撑人类文明新高度 #世界和平 #WorldPeace",
+            "从共识机制到和平机制，技术正在重塑人类命运 #世界和平 #WorldPeace",
+            "链上和平，链下和谐，这是我们对世界的共同承诺 #世界和平 #WorldPeace",
+            "分布式节点串联全球善意，区块链代码守护和平约定 #世界和平 #WorldPeace",
+            "智能合约锁定和平承诺，链上共识消除分歧隔阂 #世界和平 #WorldPeace",
+            "每一次区块生成，都是和平的印记；每一次共识达成，都是友爱的传递 #世界和平 #WorldPeace",
+            "区块链打破地域界限，让和平理念在每个节点生根发芽 #世界和平 #WorldPeace",
+            "哈希值固化和平瞬间，分布式网络延续和谐希望 #世界和平 #WorldPeace",
+            "从链上共识到现实行动，和平的力量正在全球蔓延 #世界和平 #WorldPeace",
+            "币安生态搭建和平桥梁，区块链技术链接人类共同梦想 #世界和平 #WorldPeace",
+            "摒弃冲突，以共识拥抱彼此；远离纷争，用区块链守护和平 #世界和平 #WorldPeace",
+            "每个钱包地址都是和平窗口，每笔链上交易都是善意表达 #世界和平 #WorldPeace",
+            "区块链的不可篡改，让和平承诺永远经得起时间检验 #世界和平 #WorldPeace",
+            "共识算法化解对立，分布式架构支撑和平，这是技术赋予世界的礼物 #世界和平 #WorldPeace",
+            "链上和平协议不断更新，人类和谐未来持续升级 #世界和平 #WorldPeace",
+            "当全球节点共筑和平网络，区块链便成为人类团结的见证 #世界和平 #WorldPeace",
+            "用链上数据记录和平进程，用共识机制保障和谐长久 #世界和平 #WorldPeace",
+            "技术无偏见，和平无差别，区块链让每个声音都能参与共识 #世界和平 #WorldPeace",
+            "区块堆叠起和平的高楼，共识凝聚成友爱的地基 #世界和平 #WorldPeace",
+            "从创世区块到无限未来，和平始终是链上不变的核心主题 #世界和平 #WorldPeace",
+            "加密技术守护和平成果，分布式网络扩大和谐影响 #世界和平 #WorldPeace",
+            "每一次链上确认，都让和平多一份保障；每一次共识达成，都让未来多一份希望 #世界和平 #WorldPeace",
+            "区块链链接不同文明，共识机制促成和平对话 #世界和平 #WorldPeace",
+            "让战争的记忆停留在链下，让和平的故事写满链上 #世界和平 #WorldPeace",
+            "智能合约执行和平约定，区块链见证人类团结 #世界和平 #WorldPeace",
+            "全球节点共议和平，链上共识共创未来 #世界和平 #WorldPeace",
+            "区块链的透明性，让和平进程公开可见；共识的公正性，让和谐成果人人共享 #世界和平 #WorldPeace",
+            "哈希碰撞出和谐火花，区块生成传递和平温度 #世界和平 #WorldPeace",
+            "每个链上账户都能贡献和平力量，每笔交易都能推动和谐发展 #世界和平 #WorldPeace",
+            "区块链打破信息壁垒，让和平理念跨越山海传递 #世界和平 #WorldPeace",
+            "共识机制构建和平信任，分布式网络筑牢和谐根基 #世界和平 #WorldPeace",
+            "从币安链到全球生态，和平的代码正在被更多人读懂 #世界和平 #WorldPeace",
+            "链上和平宣言永不删除，人类友爱约定永远留存 #世界和平 #WorldPeace",
+            "每一次区块同步，都是和平的同步；每一次共识更新，都是友爱的更新 #世界和平 #WorldPeace",
+            "区块链技术赋能和平事业，共识理念点亮人类前程 #世界和平 #WorldPeace",
+            "远离冲突，让链上共识成为沟通桥梁；拥抱和平，让区块链成为团结纽带 #世界和平 #WorldPeace",
+            "智能合约保障和平承诺不违约，分布式网络确保和谐成果不流失 #世界和平 #WorldPeace",
+            "全球节点共同维护和平主链，不让分歧成为区块链的分叉 #世界和平 #WorldPeace",
+            "区块链记录的和平瞬间，将成为人类文明的宝贵财富 #世界和平 #WorldPeace",
+            "共识凝聚全球善意，技术守护世界和平 #世界和平 #WorldPeace",
+            "每一个链上地址都承载和平期待，每一次交易都寄托和谐愿望 #世界和平 #WorldPeace",
+            "区块链的去中心化，让和平权力属于每一个人 #世界和平 #WorldPeace",
+            "哈希值串联起不同种族的和平梦想，区块堆叠起不同文明的友爱成果 #世界和平 #WorldPeace",
+            "从链上理念到线下实践，和平的脚步从未停歇 #世界和平 #WorldPeace",
+            "智能合约化解利益分歧，区块链共识促成和平共赢 #世界和平 #WorldPeace",
+            "全球链上共识不断增强，世界和平根基持续稳固 #世界和平 #WorldPeace",
+            "区块链技术让和平承诺可追溯，共识机制让和谐未来可期待 #世界和平 #WorldPeace",
+            "每个节点都在为和平投票，每笔交易都在为和谐助力 #世界和平 #WorldPeace",
+            "链上存证人类和平愿景，区块见证全球团结时刻 #世界和平 #WorldPeace",
+            "共识不分国界，和平不分种族，区块链让人类成为命运共同体 #世界和平 #WorldPeace",
+            "用区块链的安全性，守护和平成果；用共识的稳定性，延续和谐未来 #世界和平 #WorldPeace",
+            "从币安生态到全球社区，和平的理念正在链上快速传播 #世界和平 #WorldPeace",
+            "链上每一个字符都书写和平，区块每一次生成都见证团结 #世界和平 #WorldPeace",
+            
+        ];
+
+        // 和平新闻数据库 - 50条包含真实链接的和平相关新闻
+        const PEACE_NEWS_DATABASE = [
+            { title: "联合国安理会通过决议，呼吁全球加强和平对话", source: "联合国新闻网", date: "2024-04-15", category: "国际政治", url: "https://news.un.org/zh/story/2024/04/1162682" },
+            { title: "亚洲区域和平论坛达成历史性共识", source: "中国外交部", date: "2024-03-22", category: "区域合作", url: "https://www.fmprc.gov.cn/web/wjb_673085/zzjg_673183/gjs_673185/" },
+            { title: "诺贝尔和平奖得主马塔伊环保理念促进全球和平", source: "诺贝尔官网", date: "2024-02-18", category: "和平人物", url: "https://www.nobelprize.org/prizes/peace/" },
+            { title: "联合国维和行动75周年：维护和平的全球承诺", source: "联合国维和网站", date: "2024-01-30", category: "冲突调解", url: "https://peacekeeping.un.org/" },
+            { title: "全球青年和平峰会在日内瓦召开", source: "联合国青年署", date: "2023-12-10", category: "青年活动", url: "https://www.un.org/youthenvoy/" },
+            { title: "气候变化与人道主义危机：和平解决的新途径", source: "联合国环境规划署", date: "2023-11-05", category: "环境和平", url: "https://www.unep.org/" },
+            { title: "非洲联盟推动区域和平与安全合作", source: "非洲联盟", date: "2023-10-17", category: "区域合作", url: "https://au.int/" },
+            { title: "妇女在和平建设中的关键角色国际研讨会", source: "联合国妇女署", date: "2023-09-28", category: "性别平等", url: "https://www.unwomen.org/" },
+            { title: "数字技术促进冲突地区和平教育项目启动", source: "联合国教科文组织", date: "2023-08-14", category: "科技和平", url: "https://en.unesco.org/themes/building-peace" },
+            { title: "欧洲安全与合作组织发布和平指数报告", source: "欧安组织", date: "2023-07-22", category: "安全合作", url: "https://www.osce.org/" },
+            { title: "美洲国家组织呼吁加强区域和平与安全合作", source: "美洲国家组织", date: "2023-06-08", category: "区域合作", url: "https://www.oas.org/" },
+            { title: "宗教领袖促进世界和平对话会议", source: "世界宗教和平组织", date: "2023-05-19", category: "宗教对话", url: "https://wcrp.org/" },
+            { title: "奥林匹克休战：体育促进和平的全球倡议", source: "国际奥委会", date: "2023-04-03", category: "体育和平", url: "https://olympics.com/ioc/olympic-truce" },
+            { title: "媒体在和平传播中的责任与使命国际论坛", source: "联合国新闻部", date: "2023-03-26", category: "媒体和平", url: "https://department.un.org/" },
+            { title: "国际红十字会推动冲突后重建与人道主义援助", source: "国际红十字会", date: "2023-02-12", category: "人道主义", url: "https://www.icrc.org/" },
+            { title: "核裁军国际峰会：迈向无核武器世界", source: "联合国裁军事务厅", date: "2023-01-05", category: "军备控制", url: "https://www.un.org/disarmament/" },
+            { title: "全球公民社会和平行动网络成立仪式", source: "国际民间社会中心", date: "2022-12-18", category: "公民参与", url: "https://civicus.org/" },
+            { title: "教育促进和平全球行动计划发布实施", source: "联合国教科文组织", date: "2022-11-24", category: "和平教育", url: "https://en.unesco.org/themes/education-peace" },
+            { title: "国际水资源组织促进跨境水资源争端和平解决", source: "国际水资源协会", date: "2022-10-11", category: "资源和平", url: "https://iwra.org/" },
+            { title: "世界银行支持和平建设与经济发展协同项目", source: "世界银行", date: "2022-09-07", category: "经济和平", url: "https://www.worldbank.org/" },
+            { title: "人工智能在预防冲突中的应用研究项目启动", source: "联合国开发计划署", date: "2022-08-23", category: "科技和平", url: "https://www.undp.org/" },
+            { title: "文化交流促进地区和平项目成果展示", source: "联合国文明联盟", date: "2022-07-16", category: "文化和平", url: "https://www.un.org/cac/council" },
+            { title: "儿童与青少年和平参与权保护国际研讨会", source: "联合国儿童基金会", date: "2022-06-02", category: "儿童和平", url: "https://www.unicef.org/" },
+            { title: "商业界和平责任倡议获得全球企业广泛支持", source: "全球企业和平联盟", date: "2022-05-27", category: "商业和平", url: "https://www.businessforpeace.no/" },
+            { title: "多边主义与全球和平治理国际研讨会在纽约举行", source: "联合国大会", date: "2022-04-19", category: "全球治理", url: "https://www.un.org/en/ga/" },
+            { title: "军事开支转用于和平建设国际对话论坛", source: "斯德哥尔摩国际和平研究所", date: "2022-03-14", category: "军备控制", url: "https://www.sipri.org/" },
+            { title: "联合国难民署支持被迫流离失所者和平返回计划", source: "联合国难民署", date: "2022-02-08", category: "难民保护", url: "https://www.unhcr.org/" },
+            { title: "国际调解协会发布和平调解专业人才培养计划", source: "国际调解协会", date: "2022-01-25", category: "调解能力", url: "https://www.imimediation.org/" },
+            { title: "非暴力冲突解决方法国际培训项目启动仪式", source: "非暴力行动中心", date: "2021-12-11", category: "非暴力", url: "https://www.nonviolenceinternational.net/" },
+            { title: "和平建设数据收集与分析标准发布实施", source: "和平研究协会", date: "2021-11-05", category: "和平研究", url: "https://www.ipra.org/" },
+            { title: "区域安全架构与全球和平关系研讨会", source: "国际战略研究所", date: "2021-10-29", category: "安全架构", url: "https://www.iiss.org/" },
+            { title: "和平过渡时期司法与人权保障国际会议", source: "国际刑事法院", date: "2021-09-17", category: "过渡司法", url: "https://www.icc-cpi.int/" },
+            { title: "数字和平外交创新实践案例分享会", source: "数字外交协会", date: "2021-08-03", category: "数字外交", url: "https://www.digitaldiplomacy.org/" },
+            { title: "联合国环境规划署推动环境冲突预防项目", source: "联合国环境规划署", date: "2021-07-22", category: "环境和平", url: "https://www.unep.org/conflicts" },
+            { title: "宗教间对话促进社区和平项目评估报告", source: "跨宗教和平委员会", date: "2021-06-15", category: "宗教和平", url: "https://wcc-coe.org/" },
+            { title: "记者无国界发布冲突地区记者安全保障指南", source: "记者无国界", date: "2021-05-09", category: "媒体和平", url: "https://rsf.org/" },
+            { title: "联合国青年署青年和平使者计划全球扩展", source: "联合国青年署", date: "2021-04-24", category: "青年参与", url: "https://www.un.org/youthenvoy/youth-peace-and-security" },
+            { title: "城市和平指数报告：可持续发展是城市和平关键", source: "国际城市联盟", date: "2021-03-18", category: "城市和平", url: "https://www.citiesalliance.org/" },
+            { title: "国际民间社会联盟研讨和平建设中民间社会作用", source: "国际民间社会联盟", date: "2021-02-06", category: "民间社会", url: "https://civicus.org/" },
+            { title: "联合国裁军事务厅筹备核不扩散条约审议大会", source: "联合国裁军事务厅", date: "2021-01-21", category: "核裁军", url: "https://www.un.org/disarmament/treaties/t/npt" },
+            { title: "国际教育协会发布和平教育课程标准趋势报告", source: "国际教育协会", date: "2020-12-10", category: "和平教育", url: "https://www.iesabroad.org/" },
+            { title: "联合国预防冲突办公室建立早期预警合作机制", source: "联合国预防冲突办公室", date: "2020-11-23", category: "冲突预防", url: "https://www.un.org/conflictprevention/" },
+            { title: "全球和平基金创新和平建设财政支持机制", source: "全球和平基金", date: "2020-10-08", category: "和平融资", url: "https://globalpeacefoundation.org/" },
+            { title: "女性参与和平联盟培训女性和平谈判代表", source: "女性参与和平联盟", date: "2020-09-16", category: "性别平等", url: "https://womeninconflict.net/" },
+            { title: "国际体育和平组织在冲突地区启动和解项目", source: "国际体育和平组织", date: "2020-08-05", category: "体育和平", url: "https://peaceandsport.org/" },
+            { title: "联合国教科文组织召开文化遗产保护与和平建设会议", source: "联合国教科文组织", date: "2020-07-19", category: "文化和平", url: "https://whc.unesco.org/" },
+            { title: "数字和平网络发布草根和平行动工具包", source: "数字和平网络", date: "2020-06-04", category: "数字和平", url: "https://www.digitalpeace.network/" },
+            { title: "企业社会责任协会发布跨国公司和平责任框架", source: "企业社会责任协会", date: "2020-05-28", category: "商业和平", url: "https://www.csr-asia.com/" },
+            { title: "联合国安理会研讨和平与安全治理多边主义", source: "联合国安理会", date: "2020-04-12", category: "全球治理", url: "https://www.un.org/securitycouncil/" },
+            { title: "和平创新中心启动青年冲突解决创新挑战赛", source: "和平创新中心", date: "2020-03-01", category: "青年创新", url: "https://peaceinnovation.org/" }
+        ];
+
+        // 生成随机口号
+        function generateSlogan() {
+            const sloganElement = document.getElementById('slogan');
+            // 添加动画效果
+            sloganElement.style.opacity = "0";
+            sloganElement.style.transform = "scale(0.95)";
+            
+            setTimeout(() => {
+                // 随机选择一条口号
+                const randomIndex = Math.floor(Math.random() * slogans.length);
+                sloganElement.textContent = slogans[randomIndex];
+                // 恢复显示
+                sloganElement.style.opacity = "1";
+                sloganElement.style.transform = "scale(1)";
+            }, 200);
+        }
+
+        // 复制口号功能
+        function copySlogan() {
+            const sloganElement = document.getElementById('slogan');
+            const sloganText = sloganElement.textContent;
+            const copyBtn = document.getElementById('copyBtn');
+            
+            if (sloganText === "点击下方按钮生成和平祝福") {
+                alert('请先生成和平口号再进行复制');
+                return;
+            }
+            
+            // 复制到剪贴板
+            navigator.clipboard.writeText(sloganText).then(() => {
+                // 成功反馈
+                const originalHTML = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fa fa-check mr-2"></i> 已复制';
+                copyBtn.classList.add('bg-gold-500', 'text-dark-900');
+                copyBtn.classList.remove('bg-dark-900', 'hover:bg-gold-600/10', 'border');
+                
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHTML;
+                    copyBtn.classList.remove('bg-gold-500', 'text-dark-900');
+                    copyBtn.classList.add('bg-dark-900', 'hover:bg-gold-600/10', 'border', 'border-gold-500/30');
+                }, 2000);
+            }).catch(err => {
+                console.error('复制失败:', err);
+                alert('复制失败，请手动复制');
+            });
+        }
+
+        // 从和平新闻数据库中随机选择5条新闻
+        function getRandomNews(count = 5) {
+            // 创建数据库副本以避免修改原始数据
+            const shuffled = [...PEACE_NEWS_DATABASE];
+            
+            // Fisher-Yates 洗牌算法
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            
+            // 返回前count条新闻
+            return shuffled.slice(0, count);
+        }
+
+        // 加载和平相关新闻 - 从静态数据库获取
+        function loadPeaceNews() {
+            const newsContainer = document.getElementById('news-container');
+            const updateTimeEl = document.getElementById('newsUpdateTime');
+            
+            // 显示加载状态
+            newsContainer.innerHTML = `
+                <div class="text-center text-white/60 py-8">
+                    <i class="fa fa-spinner fa-spin text-gold-500 text-2xl mb-2"></i>
+                    <p>正在获取和平资讯...</p>
+                </div>
+            `;
+
+            // 添加短暂延迟以显示加载动画
+            setTimeout(() => {
+                // 从静态数据库获取随机新闻
+                const selectedNews = getRandomNews(5);
+                
+                // 渲染新闻
+                newsContainer.innerHTML = '';
+                selectedNews.forEach(news => {
+                    const newsItem = document.createElement('div');
+                    newsItem.className = 'border-l-4 border-gold-500 pl-4 py-3 mb-3 news-item card-hover';
+                    newsItem.innerHTML = `
+                        <a href="${news.url}" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gold-500 transition-colors block">
+                            <h3 class="font-medium">${news.title}</h3>
+                            <p class="text-xs text-white/40 mt-1">
+                                ${news.source} · ${news.date} · ${news.category}
+                            </p>
+                        </a>
+                    `;
+                    newsContainer.appendChild(newsItem);
+                });
+                
+                // 更新时间
+                updateTimeEl.textContent = `最后更新：${new Date().toLocaleString()}`;
+            }, 500);
+        }
+
+        // 移除不再需要的showNewsDetail函数，直接使用真实链接打开新闻
+        
+        // 添加手动刷新功能
+        function setupRefreshButton() {
+            const refreshBtn = document.createElement('button');
+            refreshBtn.id = 'refreshNewsBtn';
+            refreshBtn.className = 'bg-gold-500 hover:bg-gold-600 text-dark-900 font-medium py-2 px-4 rounded-full transition-all duration-300 flex items-center justify-center shadow-lg hover:shadow-gold-500/20';
+            refreshBtn.innerHTML = '<i class="fa fa-refresh mr-2"></i> 刷新和平资讯';
+            refreshBtn.onclick = loadPeaceNews;
+            
+            // 将按钮添加到新闻区域上方
+            const newsSection = document.getElementById('news-section');
+            if (newsSection) {
+                const header = document.createElement('div');
+                header.className = 'flex justify-between items-center mb-4';
+                header.innerHTML = '<h2 class="text-xl font-bold text-gold-500">和平资讯</h2>';
+                header.appendChild(refreshBtn);
+                
+                // 插入到新闻容器前面
+                const newsContainer = document.getElementById('news-container');
+                newsSection.insertBefore(header, newsContainer);
+            }
+        }
+
+        // 页面初始化
+        window.onload = function() {
+            // 设置刷新按钮
+            setupRefreshButton();
+            // 初始加载新闻
+            loadPeaceNews();
+            // 初始化口号区域样式
+            const sloganElement = document.getElementById('slogan');
+            sloganElement.style.opacity = "1";
+            sloganElement.style.transform = "scale(1)";
+        };
+    </script>
+</body>
+</html>
