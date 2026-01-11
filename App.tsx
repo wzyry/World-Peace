@@ -352,11 +352,20 @@ const Marquee: React.FC = () => {
     </>
   );
 
+  const halfContent = (
+      <div className="flex shrink-0">
+          <MarqueeItem />
+          <MarqueeItem />
+          <MarqueeItem />
+          <MarqueeItem />
+      </div>
+  );
+
   return (
-    <div className="bg-cyber-light border-y border-white/5 py-3 overflow-hidden flex justify-center">
-      <div className="flex whitespace-nowrap animate-marquee min-w-max">
-        <MarqueeItem />
-        <MarqueeItem />
+    <div className="bg-cyber-light border-y border-white/5 py-3 overflow-hidden flex">
+      <div className="flex whitespace-nowrap animate-marquee min-w-max will-change-transform">
+        {halfContent}
+        {halfContent}
       </div>
     </div>
   );
